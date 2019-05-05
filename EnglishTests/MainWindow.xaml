@@ -1,0 +1,39 @@
+﻿<Window x:Class="EnglishTests.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnglishTests"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="530" Width="450" MinWidth="450" MinHeight="530">
+    <Grid Background="#FFFAE3CD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="105*"/>
+            <RowDefinition Height="98*"/>
+            <RowDefinition Height="98*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="123*"/>
+        </Grid.RowDefinitions>
+        <Label Content="English Test" FontSize="72" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontFamily="Harlow Solid Italic" Foreground="#FFAC5353"/>
+        <Grid Grid.Row="2">
+            <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
+            <TextBox x:Name="PassT" Height="56" TextWrapping="Wrap" Text="Password" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
+        </Grid>
+        <Grid Grid.Row="3" Cursor="Hand" MouseUp="Grid_MouseUp_1">
+            <Label Content="LogIn" Height="56" Width="176" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Panel.ZIndex="1" MouseUp="Label_MouseUp"/>
+            <Rectangle Fill="#FFAC5353" Height="56" Width="176" RadiusY="30.223" RadiusX="30.223"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
+            <TextBox x:Name="LoginT" Height="56" TextWrapping="Wrap" Text="Login" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
+        </Grid>
+        <Grid Height="69" Grid.Row="4" Width="213" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,28,10" MouseUp="Grid_MouseUp" Cursor="Hand">
+            <Label Content="Register" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Harlow Solid Italic" Foreground="#FFAC5353"/>
+        </Grid>
+        <Label x:Name="Alarm" Content="Recheck Login Or Password" HorizontalAlignment="Left" Margin="95,10,0,0" Grid.Row="4" VerticalAlignment="Top" FontSize="20" Foreground="#FFD31E1E" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
