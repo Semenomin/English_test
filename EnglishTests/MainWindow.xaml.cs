@@ -22,7 +22,7 @@ namespace EnglishTests
     /// </summary>
     public partial class MainWindow : Window
     {
-        string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
+        string connectionString = @"Data Source=.\NAMEALINA;Initial Catalog=englishtest;Integrated Security=True";
         object id;
         public MainWindow()
         {

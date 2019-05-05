@@ -20,7 +20,7 @@ namespace EnglishTests
     /// </summary>
     public partial class Register : Window
     {
-        string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
+        string connectionString = @"Data Source=.\NAMEALINA;Initial Catalog=englishtest;Integrated Security=True";
         public Register()
         {
             InitializeComponent();

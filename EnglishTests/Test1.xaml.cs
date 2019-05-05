@@ -34,5 +34,15 @@ namespace EnglishTests
         {
             ((TextBlock)sender).Text = (string)e.Data.GetData(DataFormats.Text);
         }
+
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
