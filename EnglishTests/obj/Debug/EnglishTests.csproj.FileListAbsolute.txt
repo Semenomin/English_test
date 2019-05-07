@@ -42,3 +42,25 @@ C:\Users\Alina\Documents\GitHub\English_test\EnglishTests\obj\Debug\EnglishTests
 C:\Users\Alina\Documents\GitHub\English_test\EnglishTests\obj\Debug\EnglishTests.csproj.CoreCompileInputs.cache
 C:\Users\Alina\Documents\GitHub\English_test\EnglishTests\obj\Debug\EnglishTests.exe
 C:\Users\Alina\Documents\GitHub\English_test\EnglishTests\obj\Debug\EnglishTests.pdb
+D:\Git Repositories\English_test\EnglishTests\bin\Debug\EnglishTests.exe.config
+D:\Git Repositories\English_test\EnglishTests\bin\Debug\EnglishTests.exe
+D:\Git Repositories\English_test\EnglishTests\bin\Debug\EnglishTests.pdb
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.csprojAssemblyReference.cache
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\FirstWindow.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\MainWindow.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\Register.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\Test1.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\App.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests_MarkupCompile.cache
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests_MarkupCompile.lref
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\App.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\FirstWindow.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\MainWindow.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\Register.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\Test1.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.g.resources
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.Properties.Resources.resources
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.csproj.GenerateResource.cache
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.csproj.CoreCompileInputs.cache
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.exe
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\EnglishTests.pdb
