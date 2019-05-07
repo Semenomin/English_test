@@ -19,9 +19,17 @@ namespace EnglishTests
     /// </summary>
     public partial class Test1 : Window
     {
+        List<ScrollViewer> scrollViewers = new List<ScrollViewer>();
+        
         public Test1()
         {
             InitializeComponent();
+            scrollViewers.Add(Theory1);
+            scrollViewers.Add(Theory2);
+            scrollViewers.Add(Theory3);
+            scrollViewers.Add(Theory4);
+            scrollViewers.Add(Theory5);
+            scrollViewers.Add(Theory6);
         }
 
         private void lbl1_MouseDown(object sender, MouseButtonEventArgs e)
