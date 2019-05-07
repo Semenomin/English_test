@@ -44,5 +44,10 @@ namespace EnglishTests
         {
 
         }
+
+        private void textBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

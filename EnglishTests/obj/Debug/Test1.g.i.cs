@@ -228,6 +228,17 @@ namespace EnglishTests
         internal System.Windows.Controls.Grid Voc4;
         internal System.Windows.Controls.TextBox txt4;
         internal System.Windows.Controls.Label label17;
+        internal System.Windows.Controls.ScrollViewer Theory5;
+        internal System.Windows.Controls.Grid grid3;
+        internal System.Windows.Controls.Label label7;
+        internal System.Windows.Controls.TextBlock textBlock4;
+        internal System.Windows.Controls.Grid Voc5;
+        internal System.Windows.Controls.TextBox txt2;
+        internal System.Windows.Controls.Label label9;
+        internal System.Windows.Controls.ScrollViewer Theory6;
+        internal System.Windows.Controls.Grid Theory_2;
+        internal System.Windows.Controls.Label label8;
+        internal System.Windows.Controls.TextBlock textBlock5;
     }
 }
 
