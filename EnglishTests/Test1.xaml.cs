@@ -20,10 +20,16 @@ namespace EnglishTests
     public partial class Test1 : Window
     {
         List<ScrollViewer> scrollViewers = new List<ScrollViewer>();
-        
+        List<Grid> Chapter2List = new List<Grid>();
         public Test1()
         {
             InitializeComponent();
+
+            Chapter2List.Add(Theory2G);
+            Chapter2List.Add(Voc2);
+          
+
+
             scrollViewers.Add(Theory1);
             scrollViewers.Add(Theory2);
             scrollViewers.Add(Theory3);
@@ -36,34 +42,58 @@ namespace EnglishTests
             Chap4.MouseUp += Ch4_MU;
             Chap5.MouseUp += Ch5_MU;
             Chap6.MouseUp += Ch6_MU;
-
         }
 
-        private void lbl1_MouseDown(object sender, MouseButtonEventArgs e)
+        #region Chapter2
+
+        private void Btn0_ch2_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Label lbl = (Label)sender;
-            DragDrop.DoDragDrop(lbl, lbl.Content, DragDropEffects.Copy);
+            foreach (Grid a in Chapter2List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Chapter2List[0].Visibility = Visibility.Visible;
         }
-
-        private void txtTarget_Drop(object sender, DragEventArgs e)
+        
+        private void Btn1_ch2_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            ((TextBlock)sender).Text = (string)e.Data.GetData(DataFormats.Text);
+            foreach (Grid a in Chapter2List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Chapter2List[1].Visibility = Visibility.Visible;
         }
 
-        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            Btn1_ch2.IsEnabled = true;
+            foreach (Grid a in Chapter2List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Chapter2List[1].Visibility = Visibility.Visible;
         }
+        #endregion
 
-        private void textBox1_TextChanged_1(object sender, TextChangedEventArgs e)
-        {
 
-        }
 
-        private void textBox3_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
-        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void Ch1_MU(object sender, MouseButtonEventArgs e)
         {
@@ -79,7 +109,7 @@ namespace EnglishTests
             {
                 a.Visibility = Visibility.Hidden;
             }
-            Theory2.Visibility = Visibility.Visible;
+            
         }
         private void Ch3_MU(object sender, MouseButtonEventArgs e)
         {
@@ -113,5 +143,7 @@ namespace EnglishTests
             }
             Theory6.Visibility = Visibility.Visible;
         }
+
+       
     }
 }
