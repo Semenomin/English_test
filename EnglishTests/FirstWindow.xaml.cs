@@ -25,12 +25,18 @@ namespace EnglishTests
         string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
 
         System.Diagnostics.Stopwatch sw;
+
         string MenuSelect = "Learn";
+
         FullUserModel user;
-        public FirstWindow(FullUserModel user)
+
+        List<int> Word = new List<int>();
+
+        public FirstWindow(FullUserModel user, List<int> Word)
         {
-            InitializeComponent();
+            this.Word = Word;
             this.user = user;
+            InitializeComponent();
             sw = new Stopwatch();
             sw.Start();
             #region Chapter Mouse Up
@@ -53,7 +59,6 @@ namespace EnglishTests
             Completed_chapters_num.Content = user.Chapter;
             #endregion
         }
-
 
         #region Disign
         private void Grid_MouseEnter(object sender, MouseEventArgs e)
@@ -135,7 +140,8 @@ namespace EnglishTests
        
         private void MenuProfile_grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Time_in_num.Content = (sw.ElapsedMilliseconds / 100.0).ToString();
+            Time_in_num.Content = Math.Round(user.Time_in + ((sw.ElapsedMilliseconds / 1000.0) / 60),2);
+            Time_in_SessionT.Content = Math.Round(((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
             if (MenuSelect != "Prof")
             {
                 MenuSelect = "Prof";
@@ -170,62 +176,62 @@ namespace EnglishTests
         #region Chapter Mouse Up
         private void Chapter1_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(1);
+            Test1 test = new Test1(1,Word, user);
             test.Show();
         }
         private void Chapter2_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(2);
+            Test1 test = new Test1(2, Word, user);
             test.Show();
         }
         private void Chapter3_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(3);
+            Test1 test = new Test1(3, Word, user);
             test.Show();
         }
         private void Chapter4_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(4);
+            Test1 test = new Test1(4, Word, user);
             test.Show();
         }
         private void Chapter5_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(5);
+            Test1 test = new Test1(5, Word, user);
             test.Show();
         }
         private void Chapter6_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(6);
+            Test1 test = new Test1(6, Word, user);
             test.Show();
         }
         private void Chapter7_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(7);
+            Test1 test = new Test1(7, Word, user);
             test.Show();
         }
         private void Chapter8_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(8);
+            Test1 test = new Test1(8, Word, user);
             test.Show();
         }
         private void Chapter9_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(9);
+            Test1 test = new Test1(9, Word, user);
             test.Show();
         }
         private void Chapter10_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(10);
+            Test1 test = new Test1(10, Word, user);
             test.Show();
         }
         private void Chapter11_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(11);
+            Test1 test = new Test1(11, Word, user);
             test.Show();
         }
         private void Chapter12_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Test1 test = new Test1(12);
+            Test1 test = new Test1(12, Word, user);
             test.Show();
         }
         #endregion
@@ -233,13 +239,13 @@ namespace EnglishTests
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             sw.Stop();
-            user.Time_in = (sw.ElapsedMilliseconds / 100.0).ToString();
+            user.Time_in += Math.Round(((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
             Save_Changes();
         }
 
         private void Save_Changes()
         {
-            string sqlExpression = $"Update Progress set Last_Chapter='{user.SubChapter}',Last_Chapter_page='{user.SubChapter}',Words='{user.Learned_words}',time_in='{user.Time_in}' where id_user='{user.Id}'";
+            string sqlExpression = $"Update Progress set Last_Chapter='{user.SubChapter}',Last_Chapter_page='{user.SubChapter}',Words='{user.Learned_words}',time_in='{user.Time_in.ToString()}' where id_user='{user.Id}'";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

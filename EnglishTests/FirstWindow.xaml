@@ -30,7 +30,7 @@
                 <Rectangle x:Name="MenuAboutUs" Fill="#7FAC5353" HorizontalAlignment="Left" Height="24" VerticalAlignment="Top" Width="264" Visibility="Hidden"/>
             </Grid>
         </Grid>
-        <Grid x:Name="Learning_grid" Grid.Row="1">
+        <Grid x:Name="Learning_grid" Grid.Row="1" d:IsHidden="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -101,13 +101,17 @@
                 <Label Content="Learned &#xD;&#xA;  words" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
                 <Label x:Name="Learned_words_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid x:Name="Time_in" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="1">
-                <Label Content="TIme in" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
+            <Grid x:Name="Time_in_program" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="1">
+                <Label Content="TIme in&#xD;&#xA;program" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,30"/>
                 <Label x:Name="Time_in_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
             <Grid x:Name="Completed_chapters" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="2">
                 <Label Content="Completed&#xD;&#xA; Chapters" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,38"/>
                 <Label x:Name="Completed_chapters_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
+            </Grid>
+            <Grid x:Name="Time_in_Session" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="3">
+                <Label Content="TIme in&#xD;&#xA;Session" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
+                <Label x:Name="Time_in_SessionT" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
         </Grid>
         <Grid x:Name="About_us_grid" Height="397" Width="792" Grid.Row="1" Visibility="Hidden">

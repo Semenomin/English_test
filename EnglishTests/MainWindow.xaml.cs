@@ -22,6 +22,8 @@ namespace EnglishTests
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<int> Word_id = new List<int>();
+
         string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
 
         string buffer;
@@ -81,17 +83,29 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand    command = new SqlCommand(sqlExpression, connection);
+                string sqlExpression2 = $"use englishtest Select id_voc from User_vocabulary";
+                SqlCommand command1 = new SqlCommand(sqlExpression2, connection);
+                SqlDataReader reader1 = command1.ExecuteReader();
+                reader1.Read();
+                if (reader1.HasRows) // если есть данные
+                {
+                    while (reader1.Read())
+                    {
+                        Word_id.Add(int.Parse(reader1.GetValue(0).ToString()));
+                    }
+                }
+                reader1.Close();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader reader  = command.ExecuteReader();
                 if (reader.HasRows) // если есть данные
                 {
-                    while (reader.Read()) // построчно считываем данные
-                    {
-                        User = ConnectUser((byte)reader.GetValue(0), (string)reader.GetValue(1));
-                    }
-                    FirstWindow fir = new FirstWindow(User);
-                    fir.Show();
-                    this.Close();
+                        while (reader.Read()) // построчно считываем данные
+                        {
+                            User = ConnectUser((byte)reader.GetValue(0), (string)reader.GetValue(1));
+                        }
+                        FirstWindow fir = new FirstWindow(User,Word_id);
+                        fir.Show();
+                        this.Close();
                 }
                 else
                 {
@@ -115,7 +129,7 @@ namespace EnglishTests
                         return new FullUserModel
                         {
                             Learned_words = (byte)reader.GetValue(3),
-                            Time_in = reader.GetValue(4).ToString(),
+                            Time_in = double.Parse(reader.GetValue(4).ToString()),
                             Chapter = (byte)reader.GetValue(1),
                             SubChapter = (byte)reader.GetValue(2),
                             Id = id,

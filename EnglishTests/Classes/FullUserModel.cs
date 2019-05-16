@@ -10,11 +10,9 @@ namespace EnglishTests
     {
         public int    Id            { get; set; }
 
-        public string Username      { get; set; }
-
         public string Name          { get; set; }
 
-        public string Time_in       { get; set; }
+        public double Time_in       { get; set; }
 
         public int    Chapter       { get; set; }
 
