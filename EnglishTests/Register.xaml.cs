@@ -73,9 +73,9 @@ namespace EnglishTests
 
         private void ValidateInputs(RegistrationModel reg)
         {
-            string sqlExpression1 = $"Select Login_text from Users where Login_text like '{reg.Username}'";
+            string sqlExpression1 = $"DECLARE @user nvarchar(50) ='{reg.Username}' exec ValidateUser @user";
 
-            string sqlExpression2 = $"INSERT INTO Users (Login_text,Password_text,Name_user) VALUES ('{reg.Username}', '{reg.Password}', '{reg.Name}')";
+            string sqlExpression2 = $"DECLARE @user nvarchar(50) ='{reg.Username}',@password nvarchar(50) = '{reg.Password}', @name nvarchar(50) = '{reg.Name}' exec CreateUser @user, @password, @name";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -106,8 +106,7 @@ namespace EnglishTests
 
         private void Create_progress(RegistrationModel reg)
         {
-            
-            string sqlExpression = $"Select id from Users where Login_text='{reg.Username}'";
+            string sqlExpression = $"DECLARE @Login nvarchar(50) ='{reg.Username}' exec GetLogins @Login";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -121,7 +120,7 @@ namespace EnglishTests
                     }
                 }
                 reader.Close();
-                string sqlExpression1 = $"INSERT into Progress (Id_user) values('{reg.Id}')";
+                string sqlExpression1 = $"DECLARE @ID tinyint ='{reg.Id}' exec CreateProgress @id";
                 SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
                 command1.ExecuteNonQuery();
             }

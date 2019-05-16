@@ -22,6 +22,8 @@ namespace EnglishTests
     {
         List<int> Word_id = new List<int>();
         List<Grid> VocabularyList = new List<Grid>();
+        List<TextBlock> textBlocks = new List<TextBlock>();
+        List<ComboBox> ComboBoxes = new List<ComboBox>();
         FullUserModel User;
         int Max_id;
         int Chapter_now;
@@ -41,7 +43,6 @@ namespace EnglishTests
         List<Grid> Chapter11List = new List<Grid>();
         List<Grid> Chapter12List = new List<Grid>();
         #endregion
-
         public Test1(int Chapter,List<int> word, FullUserModel user)
         {
             Chapter_now = Chapter;
@@ -49,7 +50,7 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlExpression = $"use englishtest Select Count(id) from Vocabulary";
+                string sqlExpression = $"exec GetCountWords";
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
@@ -62,7 +63,7 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlExpression2 = $"Select * from User_vocabulary";
+                string sqlExpression2 = $"exec GetUserWords";
                 SqlCommand command2 = new SqlCommand(sqlExpression2, connection);
                 SqlDataReader reader2 = command2.ExecuteReader();
                 if (reader2.HasRows) // если есть данные
@@ -75,6 +76,16 @@ namespace EnglishTests
                 reader2.Close();
             }
             InitializeComponent();
+            #region Text Blocks
+            textBlocks.Add(Test_word1);
+            textBlocks.Add(Test_word2);
+            textBlocks.Add(Test_word3);
+            #endregion
+            #region ComboBoxes
+            ComboBoxes.Add(Answer1);
+            ComboBoxes.Add(Answer2);
+            ComboBoxes.Add(Answer3);
+            #endregion
             #region СhapterList
             ChapterList.Add(Chapter1);
             ChapterList.Add(Chapter2);
@@ -160,7 +171,6 @@ namespace EnglishTests
             #endregion
             
         }
-
         #region work with vocabulary
         private void Open_Vocabulary(object sender, RoutedEventArgs e)
         {
@@ -301,7 +311,7 @@ namespace EnglishTests
                 else
                 {
                     Word_id.Add(NewRandom);
-                    string sqlExpression = $"Select Word,Trans from Vocabulary where Id='{NewRandom}'";
+                    string sqlExpression = $"DECLARE @id tinyint ='{NewRandom}' exec GetRandomWord @id";
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
@@ -368,7 +378,7 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlExpression = $"TRUNCATE TABLE user_vocabulary";
+                string sqlExpression = $"DECLARE @id tinyint ='{User.Id}' exec ClearVacabulary @id";
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 command.ExecuteNonQuery();
             }
@@ -380,7 +390,7 @@ namespace EnglishTests
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        string sqlExpression = $"use englishtest Select * from Vocabulary where Id = '{model.Id}'";
+                        string sqlExpression = $"DECLARE @id tinyint ='{model.Id}' exec GetWord @id";
                         SqlCommand command = new SqlCommand(sqlExpression, connection);
                         SqlDataReader reader = command.ExecuteReader();
                         if (reader.HasRows) // если есть данные
@@ -392,14 +402,231 @@ namespace EnglishTests
                             }
                         }
                         reader.Close();
-                        string sqlExpression1 = $"INSERT INTO User_vocabulary (Id_user,Id_Voc,Word,Trans) values ('{model.Id_user}','{model.Id}','{model.Word}','{model.Trans}')";
+
+                        string sqlExpression1 = $"DECLARE @Id_user tinyint ='{model.Id_user}', @Id_Voc tinyint='{model.Id}', @Word NvarCHAR(50)='{model.Word}', @Trans NvarCHAR(50)='{model.Trans}' exec CreateVocabulary @Id_user, @Id_Voc, @Word, @Trans";
                         SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
                         command1.ExecuteNonQuery();
                     }   
             }
         }
         #endregion
+        #region Work with Vocabulary Test
 
+        private void OpenVocabularyTest(object sender, RoutedEventArgs e)
+        {
+            if (Chapter_now == 1)
+            {
+                Btn2_ch1.IsEnabled = true;
+                Chapter1List.Add(Vocabulary_Test);
+            }
+            if (Chapter_now == 2)
+            {
+                Chapter2List.Add(Vocabulary_Test);
+                Btn2_ch2.IsEnabled = true;
+            }
+            if (Chapter_now == 3)
+            {
+                Chapter3List.Add(Vocabulary_Test);
+                Btn2_ch3.IsEnabled = true;
+            }
+            if (Chapter_now == 4)
+            {
+                Chapter4List.Add(Vocabulary_Test);
+                Btn2_ch4.IsEnabled = true;
+            }
+            if (Chapter_now == 5)
+            {
+                Chapter5List.Add(Vocabulary_Test);
+                Btn2_ch5.IsEnabled = true;
+            }
+            if (Chapter_now == 6)
+            {
+                Chapter6List.Add(Vocabulary_Test);
+                Btn2_ch6.IsEnabled = true;
+            }
+            if (Chapter_now == 7)
+            {
+                Chapter7List.Add(Vocabulary_Test);
+                Btn2_ch7.IsEnabled = true;
+            }
+            if (Chapter_now == 8)
+            {
+                Chapter8List.Add(Vocabulary_Test);
+                Btn2_ch8.IsEnabled = true;
+            }
+            if (Chapter_now == 9)
+            {
+                Chapter9List.Add(Vocabulary_Test);
+                Btn2_ch9.IsEnabled = true;
+            }
+            if (Chapter_now == 10)
+            {
+                Chapter10List.Add(Vocabulary_Test);
+                Btn2_ch10.IsEnabled = true;
+            }
+            if (Chapter_now == 11)
+            {
+                Chapter11List.Add(Vocabulary_Test);
+                Btn2_ch11.IsEnabled = true;
+            }
+            if (Chapter_now == 12)
+            {
+                Chapter12List.Add(Vocabulary_Test);
+                Btn2_ch12.IsEnabled = true;
+            }
+            foreach (Grid a in Chapter1List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter2List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter3List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter4List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter5List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter6List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter7List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter8List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter9List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter10List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter11List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            foreach (Grid a in Chapter12List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            TakeWordsInTest();
+            TakeAnswersInTest();
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+
+        private void TakeWordsInTest()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                int i = 0;
+                connection.Open();
+                string sqlExpression = $"DECLARE @id tinyint ='{User.Id}' exec GetWordsToTest @id";
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read() && i!=3)
+                    {
+                        textBlocks[i].Text = reader.GetValue(3).ToString();
+                        i++;
+                    }
+                }
+                reader.Close();   
+            }
+        }
+
+        private void TakeAnswersInTest()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                int i = 0;
+                connection.Open();
+                string sqlExpression = $"DECLARE @id tinyint ='{User.Id}' exec GetAnswersToTest @id";
+                while (i != 3)
+                {
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())
+                        {
+                            ComboBoxes[i].Items.Add(reader.GetValue(4).ToString());
+                        }
+                        i++;
+                    }
+                    reader.Close();
+                }
+            }
+        }
+
+        private void ValidateVocabularyTest()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                int i = 0;
+                int id_word = 0, id_trans = -1;
+                connection.Open();
+                while (i != 3)
+                {
+                    string sqlExpression1 = $"DECLARE @Word NvarCHAR(50) ='{textBlocks[i].Text}' exec GetIdByWord @Word";
+                    string sqlExpression2 = $"DECLARE @Trans NvarCHAR(50) ='{ComboBoxes[i].Text}' exec GetIdByTrans @Trans";
+                    SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
+                    SqlDataReader reader1 = command1.ExecuteReader();
+                    if (reader1.HasRows) // если есть данные
+                    {
+                        while (reader1.Read())
+                        {
+                            id_word = int.Parse(reader1.GetValue(0).ToString());
+                        }
+                    }
+                    reader1.Close();
+                    SqlCommand command2 = new SqlCommand(sqlExpression2, connection);
+                    SqlDataReader reader2 = command2.ExecuteReader();
+                    if (reader2.HasRows) // если есть данные
+                    {
+                        while (reader2.Read())
+                        {
+                            id_trans = int.Parse(reader2.GetValue(0).ToString());
+                        }
+                    }
+                    reader2.Close();
+                    string sqlExpression3 = $"DECLARE @id tinyint ='{id_word}' exec UpdateGoodWord @id";
+                    string sqlExpression4 = $"DECLARE @id_word tinyint ='{id_word}',@id_trans tinyint ='{id_trans}' exec UpdateBadWord @id_word,@id_trans";
+                    if (id_trans == id_word)
+                    {
+                        SqlCommand command3 = new SqlCommand(sqlExpression3, connection);
+                        command3.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        SqlCommand command4 = new SqlCommand(sqlExpression4, connection);
+                        command4.ExecuteNonQuery();
+                        MessageBox.Show(textBlocks[i].Text + "!=" + ComboBoxes[i].Text);
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void Voc_Test_Click(object sender, RoutedEventArgs e)
+        {
+                ValidateVocabularyTest();
+        }
+
+        #endregion
         #region Chapter1
         private void Btn0_ch1_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -417,6 +644,14 @@ namespace EnglishTests
                 a.Visibility = Visibility.Hidden;
             }
             Chapter1List[1].Visibility = Visibility.Visible;
+        }
+        private void Btn2_ch1_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter1List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
         }
         #endregion
         #region Chapter2
@@ -437,7 +672,15 @@ namespace EnglishTests
                 a.Visibility = Visibility.Hidden;
             }
             Chapter2List[1].Visibility = Visibility.Visible;
-        } 
+        }
+        private void Btn2_ch2_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter2List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
         #endregion
         #region Chapter3
         private void Btn0_ch3_MouseUp(object sender, MouseButtonEventArgs e)
@@ -458,7 +701,14 @@ namespace EnglishTests
             }
             Chapter3List[1].Visibility = Visibility.Visible;
         }
-
+        private void Btn2_ch3_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter3List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
         #endregion
         #region Chapter4
         private void Btn0_ch4_MouseUp(object sender, MouseButtonEventArgs e)
@@ -479,7 +729,14 @@ namespace EnglishTests
             }
             Chapter4List[1].Visibility = Visibility.Visible;
         }
-        
+        private void Btn2_ch4_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter4List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
         #endregion 
         #region Chapter5
         private void Btn0_ch5_MouseUp(object sender, MouseButtonEventArgs e)
@@ -500,8 +757,15 @@ namespace EnglishTests
             }
             Chapter5List[1].Visibility = Visibility.Visible;
         }
-        
-#endregion
+        private void Btn2_ch5_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter5List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region Chapter6
         private void Btn0_ch6_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -521,7 +785,14 @@ namespace EnglishTests
             }
             Chapter6List[1].Visibility = Visibility.Visible;
         }
-        
+        private void Btn2_ch6_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter6List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
         #endregion
         #region Chapter7
         private void Btn0_ch7_MouseUp(object sender, MouseButtonEventArgs e)
@@ -542,8 +813,15 @@ namespace EnglishTests
             }
             Chapter7List[1].Visibility = Visibility.Visible;
         }
-        
-#endregion 
+        private void Btn2_ch7_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter7List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region Chapter8
         private void Btn0_ch8_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -563,8 +841,15 @@ namespace EnglishTests
             }
             Chapter8List[1].Visibility = Visibility.Visible;
         }
-        
-#endregion
+        private void Btn2_ch8_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter8List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region Chapter9
         private void Btn0_ch9_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -584,8 +869,15 @@ namespace EnglishTests
             }
             Chapter9List[1].Visibility = Visibility.Visible;
         }
-
-#endregion 
+        private void Btn2_ch9_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter9List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region Chapter10
         private void Btn0_ch10_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -605,7 +897,15 @@ namespace EnglishTests
             }
             Chapter10List[1].Visibility = Visibility.Visible;
         }
-#endregion
+        private void Btn2_ch10_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter10List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region Chapter11
         private void Btn0_ch11_MouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -625,7 +925,14 @@ namespace EnglishTests
             }
             Chapter11List[1].Visibility = Visibility.Visible;
         }
-        
+        private void Btn2_ch11_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter11List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
         #endregion
         #region Chapter12
         private void Btn0_ch12_MouseUp(object sender, MouseButtonEventArgs e)
@@ -646,6 +953,16 @@ namespace EnglishTests
             }
             Chapter12List[1].Visibility = Visibility.Visible;
         }
-        #endregion  
+        private void Btn2_ch12_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            foreach (Grid a in Chapter12List)
+            {
+                a.Visibility = Visibility.Hidden;
+            }
+            Vocabulary_Test.Visibility = Visibility.Visible;
+        }
+        #endregion
+
+
     }
 }

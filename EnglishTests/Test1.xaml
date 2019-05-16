@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="The Artcle" Height="691.5" Width="543" MinWidth="600" MinHeight="450" Background="#FFFAE3CD" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid x:Name="Chapter1" d:IsHidden="True">
+        <Grid x:Name="Chapter1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="84"/>
             </Grid.RowDefinitions>
@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch1_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch1_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" MouseUp="Btn2_ch1_MouseUp" IsEnabled="False"/>
                 <Rectangle x:Name="Btn3_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch1" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -41,7 +41,7 @@
                 </ScrollViewer>
             </Grid>
         </Grid>
-        <Grid x:Name="Chapter2"
+        <Grid x:Name="Chapter2" d:IsHidden="True"
               >
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
@@ -63,7 +63,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch2_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch2_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch2_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch2" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -108,7 +108,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch3_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch3_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch3_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch3" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -144,7 +144,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch4_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch4_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch4_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch4" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -180,7 +180,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch5_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch5_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch5_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch5" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -216,7 +216,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch6_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch6_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch6_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch6" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -260,7 +260,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch7_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch7_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch7_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch7" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -296,7 +296,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch8_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch8_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch8_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch8" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -332,7 +332,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch9_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch9_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch9_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch9" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -368,7 +368,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch10_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch10_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch10_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch10" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -395,7 +395,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch11_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch11_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch11_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch11" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -431,7 +431,7 @@
                 </Grid.ColumnDefinitions>
                 <Rectangle x:Name="Btn0_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" MouseUp="Btn0_ch12_MouseUp"/>
                 <Rectangle x:Name="Btn1_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="1" MouseUp="Btn1_ch12_MouseUp" IsEnabled="False"/>
-                <Rectangle x:Name="Btn2_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False"/>
+                <Rectangle x:Name="Btn2_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="2" IsEnabled="False" MouseUp="Btn2_ch12_MouseUp"/>
                 <Rectangle x:Name="Btn3_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="3" IsEnabled="False"/>
                 <Rectangle x:Name="Btn4_ch12" Fill="#FF853D3D" Stroke="#FFFAE3CD" Grid.Column="4" IsEnabled="False"/>
             </Grid>
@@ -445,7 +445,7 @@
                 </ScrollViewer>
             </Grid>
         </Grid>
-        <Grid x:Name="Vocabulary" Width="572" Margin="10,86,10,10" Background="#41AC5353" Visibility="Hidden">
+        <Grid x:Name="Vocabulary" Width="572" Margin="10,86,10,10" Background="#41AC5353" Visibility="Hidden" d:IsHidden="True">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -457,13 +457,34 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label x:Name="label13_Copy" Content="Vocabulary" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="#FF3F8175" FontWeight="Bold"/>
-            <Button Content="Thank you, NEXT!!!" FontSize="18" Background="#FFB65757" BorderBrush="{x:Null}" Grid.Row="7"/>
+            <Button Content="Thank you, NEXT!!!" FontSize="18" Background="#FFB65757" BorderBrush="{x:Null}" Grid.Row="7" Click="OpenVocabularyTest"/>
             <TextBlock x:Name="Word1" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
             <TextBlock x:Name="Word2" Grid.Row="6" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
             <TextBlock x:Name="Word3" Grid.Row="5" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
             <TextBlock x:Name="Word4" Grid.Row="4" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
             <TextBlock x:Name="Word5" Grid.Row="3" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
             <TextBlock x:Name="Word6" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" TextAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+        </Grid>
+        <Grid x:Name="Vocabulary_Test" Margin="10,86,10,10" Background="#41AC5353" HorizontalAlignment="Center" Width="572" Visibility="Hidden" d:IsHidden="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="Thank you, NEXT!!!" FontSize="18" Background="#FFB65757" BorderBrush="{x:Null}" Grid.Row="4" Margin="0,42,0,0" Grid.ColumnSpan="2" Click="Voc_Test_Click"/>
+            <Label x:Name="label13_Copy1" Content="Vocabulary Test" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" Foreground="#FF3F8175" FontWeight="Bold" Margin="0,0,0,43" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="Test_word1" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" FontSize="18" TextAlignment="Center"/>
+            <TextBlock x:Name="Test_word2" Grid.Row="2" TextWrapping="Wrap" Text="TextBlock" FontSize="18" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock x:Name="Test_word3" Grid.Row="3" TextWrapping="Wrap" Text="TextBlock" FontSize="18" TextAlignment="Center" VerticalAlignment="Center"/>
+            <ComboBox x:Name="Answer1" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Height="40" Margin="0,37,10,37" FontSize="18" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="Answer2" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Height="40" Margin="0,37,10,37" FontSize="18" VerticalContentAlignment="Center"/>
+            <ComboBox x:Name="Answer3" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Height="40" Margin="0,37,10,37" FontSize="18" VerticalContentAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

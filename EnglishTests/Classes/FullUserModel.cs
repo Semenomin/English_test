@@ -19,7 +19,5 @@ namespace EnglishTests
         public int    Learned_words { get; set; }
 
         public int    SubChapter    { get; set; }
-
-
     }
 }

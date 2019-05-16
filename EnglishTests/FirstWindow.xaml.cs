@@ -119,6 +119,15 @@ namespace EnglishTests
                 MenuAboutUs.Visibility = Visibility.Hidden;
             }
         }
+        private void Dictoinary_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Dictionary.Opacity = 0.5;
+        }
+
+        private void Dictionary_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Dictionary.Opacity = 1;
+        }
         #endregion
 
         #region Menu Select
@@ -245,7 +254,7 @@ namespace EnglishTests
 
         private void Save_Changes()
         {
-            string sqlExpression = $"Update Progress set Last_Chapter='{user.SubChapter}',Last_Chapter_page='{user.SubChapter}',Words='{user.Learned_words}',time_in='{user.Time_in.ToString()}' where id_user='{user.Id}'";
+            string sqlExpression = $"DECLARE @Last_Chapter tinyint = '{user.Chapter}', @Last_Chapter_page tinyint= '{user.SubChapter}', @Words tinyint= '{user.Learned_words}', @time_i NvarCHAR(50)= '{user.Time_in}', @id_user tinyint= '{user.Id}' exec UpdateProgress @Last_Chapter, @Last_Chapter_page, @Words, @time_i , @id_user";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -253,6 +262,12 @@ namespace EnglishTests
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 command.ExecuteNonQuery();
             }
+        }
+
+        private void Vocabulary_open(object sender, MouseButtonEventArgs e)
+        {
+            Vocabulary vocabulary = new Vocabulary(user);
+            vocabulary.ShowDialog();
         }
     }
 }

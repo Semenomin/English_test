@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Dictionary.cs" />
     <Compile Include="Classes\FullUserModel.cs" />
     <Compile Include="Classes\RegistrationModel.cs" />
     <Compile Include="Classes\UserModel.cs" />
@@ -67,6 +68,9 @@
     </Compile>
     <Compile Include="Test1.xaml.cs">
       <DependentUpon>Test1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vocabulary.xaml.cs">
+      <DependentUpon>Vocabulary.xaml</DependentUpon>
     </Compile>
     <Page Include="FirstWindow.xaml">
       <SubType>Designer</SubType>
@@ -89,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Test1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vocabulary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -83,7 +83,7 @@
             </Grid>
 
         </Grid>
-        <Grid x:Name="Profile_grid" Height="397" Width="792" Grid.Row="1" Background="#FFFAE3CD" Panel.ZIndex="-1" Visibility="Hidden">
+        <Grid x:Name="Profile_grid" Height="397" Width="792" Grid.Row="1" Background="#FFFAE3CD" Panel.ZIndex="-1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -112,6 +112,9 @@
             <Grid x:Name="Time_in_Session" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="3">
                 <Label Content="TIme in&#xD;&#xA;Session" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
                 <Label x:Name="Time_in_SessionT" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
+            </Grid>
+            <Grid x:Name="Dictionary" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="4" MouseEnter="Dictoinary_MouseEnter" MouseLeave="Dictionary_MouseLeave" MouseUp="Vocabulary_open">
+                <Label Content="Vocabulary" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center"/>
             </Grid>
         </Grid>
         <Grid x:Name="About_us_grid" Height="397" Width="792" Grid.Row="1" Visibility="Hidden">

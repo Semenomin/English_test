@@ -78,23 +78,11 @@ namespace EnglishTests
         }
         private void ValidateInputs(UserModel use)
         {
-            string sqlExpression = $"Select Id,Name_user from Users where Login_text like '{use.Username}' and Password_text like '{use.Password}'";
+            string sqlExpression = $"DECLARE @Login nvarchar(50) ='{use.Username}', @password nvarchar(50) ='{use.Password}'  exec LogInUser @Login, @password";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlExpression2 = $"use englishtest Select id_voc from User_vocabulary";
-                SqlCommand command1 = new SqlCommand(sqlExpression2, connection);
-                SqlDataReader reader1 = command1.ExecuteReader();
-                reader1.Read();
-                if (reader1.HasRows) // если есть данные
-                {
-                    while (reader1.Read())
-                    {
-                        Word_id.Add(int.Parse(reader1.GetValue(0).ToString()));
-                    }
-                }
-                reader1.Close();
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader reader  = command.ExecuteReader();
                 if (reader.HasRows) // если есть данные
@@ -116,7 +104,7 @@ namespace EnglishTests
         }
         private FullUserModel ConnectUser(int id, string name)
         {
-            string sqlExpression1 = $"Select * from Progress where id_user='{id}'";
+            string sqlExpression1 = $"DECLARE @id tinyint = '{id}' exec GetProgress @id";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
