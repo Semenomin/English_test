@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnglishTests"
         mc:Ignorable="d"
-        Title="Register" Height="450" Width="800" MinWidth="800" MinHeight="450">
+        Title="Register" Height="500" Width="500" MinHeight="500" MinWidth="500">
     <Grid Background="#FFFAE3CD">
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -16,32 +16,29 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="155*"/>
-            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label Content="Registratoin" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
-        <Grid Grid.Row="1" Margin="0,0,0,1">
+        <Grid x:Name="Name_input" Grid.Row="1">
             <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
             <TextBox x:Name="NameT" Height="56" TextWrapping="Wrap" Text="Name" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
         </Grid>
-        <Grid Grid.Row="1" Margin="0,70,0,0" Grid.RowSpan="2">
+        <Grid x:Name="Login_input" Grid.Row="2">
             <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
             <TextBox x:Name="LoginT" Height="56" TextWrapping="Wrap" Text="Login" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
         </Grid>
-        <Grid Grid.Row="3" Margin="0,0,0,1">
+        <Grid x:Name="Password_input" Grid.Row="3">
             <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
             <TextBox x:Name="PassT" Height="56" TextWrapping="Wrap" Text="Password" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
         </Grid>
-        <Grid Grid.Row="3" Margin="0,70,0,1" Grid.RowSpan="2">
+        <Grid x:Name="RepPassword_input" Grid.Row="4">
             <Rectangle Fill="#FFAC5353" Height="56" Width="354" RadiusY="30.223" RadiusX="30.223"/>
             <TextBox x:Name="RPassT" Height="56" TextWrapping="Wrap" Text="Repeat Password" Width="354" Background="{x:Null}" BorderBrush="{x:Null}" SelectionBrush="#FF595959" VerticalContentAlignment="Center" Padding="17,0,0,0" FontSize="22" GotFocus="Text_box_Login_text_GotFocus" LostFocus="Text_box_Login_text_LostFocus"/>
         </Grid>
-        <Grid Grid.Row="5" MouseUp="Grid_MouseUp" Cursor="Hand">
+        <Grid x:Name="Reg_button" Grid.Row="5" MouseUp="Register_button_MouseUp" Cursor="Hand">
             <Label Content="Register" Height="56" Width="176" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="22" Panel.ZIndex="1"/>
             <Rectangle Fill="#FFAC5353" Height="56" Width="176" RadiusY="30.223" RadiusX="30.223"/>
         </Grid>
-        <Label x:Name="Alarma1" Content="User with the same login already exists" Grid.Row="1" FontSize="18" Grid.Column="1" VerticalContentAlignment="Center" Foreground="#FFE82626" Margin="0,70,0,0" Grid.RowSpan="2" Visibility="Hidden"/>
-        <Label x:Name="Alarma2" Content="Passwords do not match" Grid.Column="1" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="24" Foreground="#FFE82626" Visibility="Hidden"/>
 
     </Grid>
 </Window>

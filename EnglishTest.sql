@@ -10,10 +10,9 @@ Name_user nvarchar(30) not null
 
 create table Progress
 (
-ID tinyint identity(0,1) primary key,
 Id_user tinyint not null,
-Last_Chapter tinyint not null check(Last_Chapter between 1 and 18),
-Last_Chapter_page tinyint not null,
-Words tinyint not null,
-time_in time not null
+Last_Chapter tinyint not null check(Last_Chapter between 1 and 12) default(1),
+Last_Chapter_page tinyint not null default(0),
+Words tinyint not null default(0),
+time_in nvarchar(100) not null default('0')
 )

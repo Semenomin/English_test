@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Data.SqlClient;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace EnglishTests
 {
@@ -20,19 +21,22 @@ namespace EnglishTests
     /// </summary>
     public partial class Register : Window
     {
-        string connectionString = @"Data Source=.\NAMEALINA;Initial Catalog=englishtest;Integrated Security=True";
+        string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
+
         public Register()
         {
             InitializeComponent();
         }
+
         string buffer;
+
+        #region Disign
         private void Text_box_Login_text_GotFocus(object sender, RoutedEventArgs e) //очистка поля
         {
             TextBox text = sender as TextBox;
             buffer = text.Text;
             if (text.Text == buffer)
                 text.Text = "";
-
         }
 
         private void Text_box_Login_text_LostFocus(object sender, RoutedEventArgs e) //возврат если поле пустое
@@ -41,48 +45,85 @@ namespace EnglishTests
             if (text.Text == "")
                 text.Text = buffer;
         }
+        #endregion
 
-        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Register_button_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Alarma1.Visibility = Visibility.Hidden;
-            Alarma2.Visibility = Visibility.Hidden;
-            bool good = true;
-            string sqlExpression1 = $"INSERT INTO Users (Login_text,Password_text,Name_user) VALUES ('{LoginT.Text}', '{PassT.Text}', '{NameT.Text}')";
-            string sqlExpression2= $"Select Login_text from Users";
+            try
+            {
+                RegistrationModel model = GetModel();
+                ValidateInputs(model);
+            }
+            catch (Exception exce)
+            {
+                MessageBox.Show(exce.Message);
+            }
+        }
+
+        private RegistrationModel GetModel()
+        {
+            return new RegistrationModel
+            {
+                Username = LoginT.Text,
+                Name = NameT.Text,
+                Password = PassT.Text,
+                RepPassword = RPassT.Text
+            };
+        }
+
+        private void ValidateInputs(RegistrationModel reg)
+        {
+            string sqlExpression1 = $"Select Login_text from Users where Login_text like '{reg.Username}'";
+
+            string sqlExpression2 = $"INSERT INTO Users (Login_text,Password_text,Name_user) VALUES ('{reg.Username}', '{reg.Password}', '{reg.Name}')";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression2, connection);
+                SqlCommand command = new SqlCommand(sqlExpression1, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows) // если есть данные
+                {
+                    throw new Exception("Change login!!!");
+                }
+                else
+                {
+                    if (reg.Password != reg.RepPassword)
+                    {
+                        throw new Exception("Passwords are not the same!!!");
+                    }
+                    else
+                    {
+                        reader.Close();
+                        SqlCommand command2 = new SqlCommand(sqlExpression2, connection);
+                        int number = command2.ExecuteNonQuery();
+                        Create_progress(reg);
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private void Create_progress(RegistrationModel reg)
+        {
+            
+            string sqlExpression = $"Select id from Users where Login_text='{reg.Username}'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
                 SqlDataReader reader = command.ExecuteReader();
                 if (reader.HasRows) // если есть данные
                 {
                     while (reader.Read()) // построчно считываем данные
                     {
-                        if ((string)reader.GetValue(0) == LoginT.Text)
-                        {
-                            Alarma1.Visibility = Visibility.Visible;
-                            good = false;
-                            break;
-                        };
-                        good = true;
+                        reg.Id = reader.GetValue(0).ToString();
                     }
                 }
                 reader.Close();
-                if (good)
-                {
-                    if (PassT.Text != RPassT.Text)
-                    {
-                        Alarma2.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SqlCommand command2 = new SqlCommand(sqlExpression1, connection);
-                        int number = command2.ExecuteNonQuery();
-                        this.Close();
-                    }
-                }
-                
+                string sqlExpression1 = $"INSERT into Progress (Id_user) values('{reg.Id}')";
+                SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
+                command1.ExecuteNonQuery();
             }
         }
     }

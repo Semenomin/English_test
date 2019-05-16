@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnglishTests"
         mc:Ignorable="d"
-        Title="FirstWindow" Height="556.372" Width="805" MinHeight="556.372" MinWidth="805">
+        Title="FirstWindow" Height="556.372" Width="805" MinHeight="556.372" MinWidth="805" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Background="#FFFAE3CD">
         <Grid.RowDefinitions>
             <RowDefinition Height="66*"/>
             <RowDefinition Height="199*"/>
         </Grid.RowDefinitions>
-        <Grid Background="#FFFAE3CD" Panel.ZIndex="2">
+        <Grid x:Name="Menu_grid" Background="#FFFAE3CD" Panel.ZIndex="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -36,8 +36,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -45,60 +44,42 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Grid Background="#A5AC5353" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" MouseUp="Grid_MouseUp">
-                <Label Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter1" Background="#A5AC5353" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter1" Content="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#B2AC5353" Grid.Column="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter2" Background="#B2AC5353" Grid.Column="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter2" Content="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#BFAC5353" Grid.Column="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter3" Background="#BFAC5353" Grid.Column="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter3" Content="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#CCAC5353" Grid.Column="3" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter4" Background="#CCAC5353" Grid.Column="3" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter4" Content="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#D8AC5353" Grid.Column="4" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter5" Background="#B2AC5353" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter5" Content="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#E5AC5353" Grid.Column="5" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter6" Background="#BFAC5353" Grid.Column="1" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter6" Content="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#B2AC5353" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter7" Background="#CCAC5353" Grid.Column="2" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter7" Content="7" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#BFAC5353" Grid.Column="1" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter8" Background="#D8AC5353" Grid.Column="5" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter8" Content="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#CCAC5353" Grid.Column="2" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#D8AC5353" Grid.Column="3" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#E5AC5353" Grid.Column="4" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#F2AC5353" Grid.Column="5" Grid.Row="1" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#BFAC5353" Grid.Row="2" MouseLeave="Grid_MouseLeave" MouseEnter="Grid_MouseEnter" IsEnabled="False">
+            <Grid x:Name="Chapter9" Background="#BFAC5353" Grid.Row="2" MouseLeave="Grid_MouseLeave" MouseEnter="Grid_MouseEnter">
 
-                <Label Content="13" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+                <Label x:Name="CChapter9" Content="9" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#CCAC5353" Grid.Column="1" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter10" Background="#CCAC5353" Grid.Column="1" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter10" Content="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#D8AC5353" Grid.Column="2" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter11" Background="#D8AC5353" Grid.Column="2" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter11" Content="11" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Background="#E5AC5353" Grid.Column="3" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="16" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#F2AC5353" Grid.Column="4" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
-            </Grid>
-            <Grid Background="#FFAC5353" Grid.Column="5" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave" IsEnabled="False">
-                <Label Content="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
+            <Grid x:Name="Chapter12" Background="#E5AC5353" Grid.Column="3" Grid.Row="2" MouseEnter="Grid_MouseEnter" MouseLeave="Grid_MouseLeave">
+                <Label x:Name="CChapter12" Content="12" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="72" Foreground="#FF853D3D" Background="{x:Null}" FontFamily="Freehand521 BT"/>
             </Grid>
 
         </Grid>
@@ -116,17 +97,17 @@
                 <RowDefinition Height="154*"/>
             </Grid.RowDefinitions>
             <Label Content="Progress" Panel.ZIndex="-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Harlow Solid Italic" FontSize="60" Foreground="#FFAC5353" Grid.ColumnSpan="5"/>
-            <Grid Grid.Row="1" Background="#19FF7474" Margin="10">
+            <Grid x:Name="Learned_words" Grid.Row="1" Background="#19FF7474" Margin="10">
                 <Label Content="Learned &#xD;&#xA;  words" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
-                <Label Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
+                <Label x:Name="Learned_words_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="1">
+            <Grid x:Name="Time_in" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="1">
                 <Label Content="TIme in" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,52"/>
-                <Label Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
+                <Label x:Name="Time_in_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
-            <Grid Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="2">
+            <Grid x:Name="Completed_chapters" Grid.Row="1" Background="#19FF7474" Margin="10" Grid.Column="2">
                 <Label Content="Completed&#xD;&#xA; Chapters" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center" Margin="0,0,0,38"/>
-                <Label Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
+                <Label x:Name="Completed_chapters_num" Content="0" Margin="0,84,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="36" FontFamily="Freehand521 BT"/>
             </Grid>
         </Grid>
         <Grid x:Name="About_us_grid" Height="397" Width="792" Grid.Row="1" Visibility="Hidden">

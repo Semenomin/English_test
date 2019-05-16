@@ -23,7 +23,11 @@ namespace EnglishTests
     public partial class MainWindow : Window
     {
         string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
-        object id;
+
+        string buffer;
+
+        FullUserModel User;
+
         public MainWindow()
         {
            
@@ -31,13 +35,11 @@ namespace EnglishTests
           
         }
 
-        
-        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Register_button_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Register reg = new Register();
             reg.ShowDialog();
         }
-        string buffer;
         private void Text_box_Login_text_GotFocus(object sender, RoutedEventArgs e) //очистка поля
         {
                 TextBox text = sender as TextBox;
@@ -46,48 +48,90 @@ namespace EnglishTests
                     text.Text = "";
           
         }
-
         private void Text_box_Login_text_LostFocus(object sender, RoutedEventArgs e) //возврат если поле пустое
         {
             TextBox text = sender as TextBox;
             if (text.Text == "")
                 text.Text = buffer;
         }
-
-        private void Label_MouseUp(object sender, MouseButtonEventArgs e)
+        private void LogIn_button_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            //FirstWindow fir = new FirstWindow();
-            //fir.Show();
-            //this.Close();
+            try
+            {
+                UserModel model = GetModel();
+                ValidateInputs(model);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
         }
-
-        private void Grid_MouseUp_1(object sender, MouseButtonEventArgs e)
+        private UserModel GetModel()
         {
-            Alarm.Visibility = Visibility.Hidden;
-            string sqlExpression = $"Select Id from Users where Login_text like '{LoginT.Text}' and Password_text like '{PassT.Text}'";
+            return new UserModel
+            {
+                Username = LoginT.Text,
+                Password = PassT.Text
+            };
+        }
+        private void ValidateInputs(UserModel use)
+        {
+            string sqlExpression = $"Select Id,Name_user from Users where Login_text like '{use.Username}' and Password_text like '{use.Password}'";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                SqlDataReader reader = command.ExecuteReader();
-
+                SqlCommand    command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader  = command.ExecuteReader();
                 if (reader.HasRows) // если есть данные
                 {
                     while (reader.Read()) // построчно считываем данные
                     {
-                        id = reader.GetValue(0);
+                        User = ConnectUser((byte)reader.GetValue(0), (string)reader.GetValue(1));
                     }
-                    FirstWindow fir = new FirstWindow(id);
+                    FirstWindow fir = new FirstWindow(User);
                     fir.Show();
                     this.Close();
                 }
                 else
                 {
-                    Alarm.Visibility = Visibility.Visible;
+                    throw new Exception("Invalid Login or Password");
                 }
                 reader.Close();
             }
-            
+        }
+        private FullUserModel ConnectUser(int id, string name)
+        {
+            string sqlExpression1 = $"Select * from Progress where id_user='{id}'";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression1, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read()) // построчно считываем данные
+                    {
+                        return new FullUserModel
+                        {
+                            Learned_words = (byte)reader.GetValue(3),
+                            Time_in = reader.GetValue(4).ToString(),
+                            Chapter = (byte)reader.GetValue(1),
+                            SubChapter = (byte)reader.GetValue(2),
+                            Id = id,
+                            Name = name
+                        };
+                    }
+                }
+                else
+                {
+                    return null;
+                    throw new Exception("Total Crash!!!");
+                }
+                reader.Close();
+            }
+            return null;
+
         }
     }
 }
