@@ -66,3 +66,5 @@ D:\Git Repositories\English_test\EnglishTests\obj\Debug\Register.baml
 D:\Git Repositories\English_test\EnglishTests\obj\Debug\Test1.baml
 D:\Git Repositories\English_test\EnglishTests\obj\Debug\Vocabulary.g.cs
 D:\Git Repositories\English_test\EnglishTests\obj\Debug\Vocabulary.baml
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\MasterWindow.g.cs
+D:\Git Repositories\English_test\EnglishTests\obj\Debug\MasterWindow.baml

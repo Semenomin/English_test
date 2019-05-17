@@ -24,6 +24,12 @@ namespace EnglishTests
     {
         string connectionString = @"Data Source=.\SQLSERVER;Initial Catalog=englishtest;Integrated Security=True";
 
+        int LastChapter;
+
+        int LastPage;
+
+        List<Grid> ListChapters = new List<Grid>();
+
         System.Diagnostics.Stopwatch sw;
 
         string MenuSelect = "Learn";
@@ -58,6 +64,22 @@ namespace EnglishTests
             Time_in_num.Content = user.Time_in;
             Completed_chapters_num.Content = user.Chapter;
             #endregion
+            #region ListChapters
+            ListChapters.Add(Chapter1);
+            ListChapters.Add(Chapter2);
+            ListChapters.Add(Chapter3);
+            ListChapters.Add(Chapter4);
+            ListChapters.Add(Chapter5);
+            ListChapters.Add(Chapter6);
+            ListChapters.Add(Chapter7);
+            ListChapters.Add(Chapter8);
+            ListChapters.Add(Chapter9);
+            ListChapters.Add(Chapter10);
+            ListChapters.Add(Chapter11);
+            ListChapters.Add(Chapter12);
+            #endregion
+            StartChapter();
+            UseChapter();
         }
 
         #region Disign
@@ -149,8 +171,7 @@ namespace EnglishTests
        
         private void MenuProfile_grid_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Time_in_num.Content = Math.Round(user.Time_in + ((sw.ElapsedMilliseconds / 1000.0) / 60),2);
-            Time_in_SessionT.Content = Math.Round(((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
+            Update_progress();
             if (MenuSelect != "Prof")
             {
                 MenuSelect = "Prof";
@@ -182,66 +203,143 @@ namespace EnglishTests
         }
         #endregion
 
+        private void Update_progress()
+        {
+            Time_in_num.Content = Math.Round(user.Time_in + ((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
+            Time_in_SessionT.Content = Math.Round(((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
+            string sqlExpression = $"DECLARE @id tinyint = '{user.Id}' exec GetLeanredWords @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Learned_words_num.Content = reader.GetValue(0).ToString();
+                    }
+                }
+            } //Learned Words
+            
+        }
+
+        #region Chapter progress
+
+        private void StartChapter()
+        {
+            string sqlExpression = $"DECLARE @id tinyint = '{user.Id}' exec GetChapters @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Completed_chapters_num.Content = int.Parse(reader.GetValue(0).ToString());
+                        LastChapter = int.Parse(reader.GetValue(0).ToString());
+                        LastPage = int.Parse(reader.GetValue(1).ToString());
+                    }
+                }
+            } //Learned Words
+        }
+
+        private void UseChapter()
+        {
+            for (int i = 0; i <= LastChapter; i++)
+            {
+                ListChapters[i].IsEnabled = true;
+            }
+        }
+
+        #endregion
+
         #region Chapter Mouse Up
         private void Chapter1_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(1,Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter2_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(2, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter3_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(3, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter4_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(4, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter5_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(5, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter6_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(6, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter7_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(7, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter8_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(8, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter9_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(9, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter10_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(10, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter11_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(11, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         private void Chapter12_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Test1 test = new Test1(12, Word, user);
-            test.Show();
+            test.ShowDialog();
+            StartChapter();
+            UseChapter();
         }
         #endregion
 
@@ -250,6 +348,8 @@ namespace EnglishTests
             sw.Stop();
             user.Time_in += Math.Round(((sw.ElapsedMilliseconds / 1000.0) / 60), 2);
             Save_Changes();
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
         }
 
         private void Save_Changes()

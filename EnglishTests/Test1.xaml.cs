@@ -21,6 +21,8 @@ namespace EnglishTests
     public partial class Test1 : Window
     {
         List<int> Word_id = new List<int>();
+        List<int> goodList = new List<int>();
+        List<int> badList = new List<int>();
         List<Grid> VocabularyList = new List<Grid>();
         List<TextBlock> textBlocks = new List<TextBlock>();
         List<ComboBox> ComboBoxes = new List<ComboBox>();
@@ -45,6 +47,7 @@ namespace EnglishTests
         #endregion
         public Test1(int Chapter,List<int> word, FullUserModel user)
         {
+            
             Chapter_now = Chapter;
             this.User = user;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -63,7 +66,7 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string sqlExpression2 = $"exec GetUserWords";
+                string sqlExpression2 = $"Declare @id tinyint = {user.Id} exec GetUserWords @id";
                 SqlCommand command2 = new SqlCommand(sqlExpression2, connection);
                 SqlDataReader reader2 = command2.ExecuteReader();
                 if (reader2.HasRows) // если есть данные
@@ -169,7 +172,6 @@ namespace EnglishTests
                 Chapter12.Visibility = Visibility.Visible;
             }
             #endregion
-            
         }
         #region work with vocabulary
         private void Open_Vocabulary(object sender, RoutedEventArgs e)
@@ -378,35 +380,64 @@ namespace EnglishTests
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
+                string sqlExpression1 = $"Select good,bad from User_vocabulary where Id_User='{User.Id}'";
+                SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
+                SqlDataReader reader1 = command1.ExecuteReader();
+                if (reader1.HasRows) // если есть данные
+                {
+                    while (reader1.Read())
+                    {
+                        goodList.Add(int.Parse(reader1.GetValue(0).ToString()));
+                        badList.Add(int.Parse(reader1.GetValue(1).ToString()));
+                    }
+                }
+                reader1.Close();
+
+
+
+
+
+
                 string sqlExpression = $"DECLARE @id tinyint ='{User.Id}' exec ClearVacabulary @id";
                 SqlCommand command = new SqlCommand(sqlExpression, connection);
                 command.ExecuteNonQuery();
             }
-            foreach (int a in Word_id)
+            for (int i = 0; i < Word_id.Count; i++)
             {
-                    VocabularyModel model = new VocabularyModel();
-                    model.Id = a;
-                    model.Id_user = User.Id;
-                    using (SqlConnection connection = new SqlConnection(connectionString))
-                    {
-                        connection.Open();
-                        string sqlExpression = $"DECLARE @id tinyint ='{model.Id}' exec GetWord @id";
-                        SqlCommand command = new SqlCommand(sqlExpression, connection);
-                        SqlDataReader reader = command.ExecuteReader();
-                        if (reader.HasRows) // если есть данные
-                        {
-                            while (reader.Read())
-                            {
-                                model.Word = reader.GetValue(1).ToString();
-                                model.Trans = reader.GetValue(2).ToString();
-                            }
-                        }
-                        reader.Close();
 
-                        string sqlExpression1 = $"DECLARE @Id_user tinyint ='{model.Id_user}', @Id_Voc tinyint='{model.Id}', @Word NvarCHAR(50)='{model.Word}', @Trans NvarCHAR(50)='{model.Trans}' exec CreateVocabulary @Id_user, @Id_Voc, @Word, @Trans";
-                        SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
-                        command1.ExecuteNonQuery();
-                    }   
+                VocabularyModel model = new VocabularyModel();
+                model.Id = Word_id[i];
+                model.Id_user = User.Id;
+                if (i < Word_id.Count - 6)
+                {
+                    model.Bad = badList[i];
+                    model.Goood = goodList[i];
+                }
+                else
+                {
+                    model.Bad = 0;
+                    model.Goood = 0;
+                }
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sqlExpression = $"DECLARE @id tinyint ='{model.Id}' exec GetWord @id";
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.HasRows) // если есть данные
+                    {
+                        while (reader.Read())
+                        {
+                            model.Word = reader.GetValue(1).ToString();
+                            model.Trans = reader.GetValue(2).ToString();
+                        }
+                    }
+                    reader.Close();
+
+                    string sqlExpression1 = $"DECLARE @Id_user int ='{model.Id_user}', @Id_Voc int='{model.Id}', @Word NvarCHAR(50)='{model.Word}', @Trans NvarCHAR(50)='{model.Trans}',@good tinyint = '{model.Goood}', @bad tinyint = '{model.Bad}' exec CreateVocabulary @Id_user, @Id_Voc, @Word, @Trans,@good,@bad";
+                    SqlCommand command1 = new SqlCommand(sqlExpression1, connection);
+                    command1.ExecuteNonQuery();
+                }
             }
         }
         #endregion
@@ -603,8 +634,8 @@ namespace EnglishTests
                         }
                     }
                     reader2.Close();
-                    string sqlExpression3 = $"DECLARE @id tinyint ='{id_word}' exec UpdateGoodWord @id";
-                    string sqlExpression4 = $"DECLARE @id_word tinyint ='{id_word}',@id_trans tinyint ='{id_trans}' exec UpdateBadWord @id_word,@id_trans";
+                    string sqlExpression3 = $"DECLARE @id int ='{id_word}' exec UpdateGoodWord @id";
+                    string sqlExpression4 = $"DECLARE @id_word int ='{id_word}',@id_trans int ='{id_trans}' exec UpdateBadWord @id_word,@id_trans";
                     if (id_trans == id_word)
                     {
                         SqlCommand command3 = new SqlCommand(sqlExpression3, connection);
@@ -623,8 +654,20 @@ namespace EnglishTests
 
         private void Voc_Test_Click(object sender, RoutedEventArgs e)
         {
-                ValidateVocabularyTest();
+            ValidateVocabularyTest();
+            this.Close();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string sqlExpression = $"update progress set Last_Chapter = '{Chapter_now}' where id_user='{User.Id}'";
+                SqlCommand command = new SqlCommand(sqlExpression, connection);
+                command.ExecuteNonQuery();
+            } 
         }
+
+        #endregion
+        #region Chapter Progress
+
 
         #endregion
         #region Chapter1
@@ -962,7 +1005,6 @@ namespace EnglishTests
             Vocabulary_Test.Visibility = Visibility.Visible;
         }
         #endregion
-
 
     }
 }

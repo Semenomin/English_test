@@ -1,0 +1,56 @@
+﻿<Window x:Class="EnglishTests.MasterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnglishTests"
+        mc:Ignorable="d"
+        Title="MasterWindow" Height="176" Width="300" MinWidth="700" MinHeight="450" Closing="Window_Closing">
+    <Grid Background="#FFFAE3CD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="103*"/>
+            <RowDefinition Height="320*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Master Window" Panel.ZIndex="-1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Harlow Solid Italic" FontSize="60" Foreground="#FFAC5353" Grid.ColumnSpan="3"/>
+        <Grid x:Name="AddWordsGrid" Height="300" Grid.Row="1" VerticalAlignment="Top" Margin="10,10,10,0" Background="#33FB5656">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Content="  Add words&#xD;&#xA;in vocabulary " VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Add_word" Margin="30,37,30,140" Grid.Row="1" TextWrapping="Wrap" BorderBrush="{x:Null}" HorizontalAlignment="Center" Width="151"/>
+            <TextBox x:Name="Add_Trans" Margin="30,97,30,80" Grid.Row="1" TextWrapping="Wrap" BorderBrush="{x:Null}" Width="151" HorizontalAlignment="Center"/>
+            <Label Content="Word" Grid.Row="1" Margin="0,0,0,163" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Freehand521 BT" Foreground="#FFAC5353" FontSize="16"/>
+            <Label Content="Translation" Grid.Row="1" Margin="0,60,0,103" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Freehand521 BT" Foreground="#FFAC5353" FontSize="16"/>
+            <Button Content="Add" HorizontalAlignment="Center" Margin="58,148,58,0" Grid.Row="1" VerticalAlignment="Top" Width="152" Height="42" FontFamily="Freehand521 BT" FontSize="18" BorderBrush="{x:Null}" Background="#33FB5656" Foreground="#FFAC5353" Click="Add_words"/>
+        </Grid>
+        <Grid x:Name="RestorePasswordGrid" Height="300" Grid.Row="1" VerticalAlignment="Top" Margin="10,10,10,0" Background="#33FB5656" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Content="  Restore&#xD;&#xA;Password" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Restore_Login" Margin="30,37,30,140" Grid.Row="1" TextWrapping="Wrap" BorderBrush="{x:Null}" HorizontalAlignment="Center" Width="151"/>
+            <TextBox x:Name="Restore_Password" Margin="30,160,30,17" Grid.Row="1" TextWrapping="Wrap" BorderBrush="{x:Null}" Width="151" HorizontalAlignment="Center"/>
+            <Label Content="Login" Grid.Row="1" Margin="0,0,0,163" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Freehand521 BT" Foreground="#FFAC5353" FontSize="16"/>
+            <Label Content="Password" Grid.Row="1" Margin="0,123,0,40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Freehand521 BT" Foreground="#FFAC5353" FontSize="16"/>
+            <Button Content="Restore" HorizontalAlignment="Center" Margin="30,76,29,0" Grid.Row="1" VerticalAlignment="Top" Width="152" Height="42" FontFamily="Freehand521 BT" FontSize="18" BorderBrush="{x:Null}" Background="#33FB5656" Foreground="#FFAC5353" Click="RestorePassword"/>
+        </Grid>
+        <Grid x:Name="ResetProgressGrid" Height="300" Grid.Row="1" VerticalAlignment="Top" Margin="10,10,10,0" Background="#33FB5656" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Label Content="   Reset&#xD;&#xA;Progress" VerticalContentAlignment="Center" FontSize="30" FontFamily="Freehand521 BT" Foreground="#FFAC5353" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="Reset_Login" Margin="30,37,30,140" Grid.Row="1" TextWrapping="Wrap" BorderBrush="{x:Null}" HorizontalAlignment="Center" Width="151"/>
+            <Label Content="Login" Grid.Row="1" Margin="0,0,0,163" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Freehand521 BT" Foreground="#FFAC5353" FontSize="16"/>
+            <Button Content="Reset" HorizontalAlignment="Center" Margin="30,76,29,0" Grid.Row="1" VerticalAlignment="Top" Width="152" Height="42" FontFamily="Freehand521 BT" FontSize="18" BorderBrush="{x:Null}" Background="#33FB5656" Foreground="#FFAC5353" Click="ResetProgress"/>
+        </Grid>
+
+    </Grid>
+</Window>

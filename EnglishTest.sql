@@ -26,7 +26,7 @@ Trans nvarchar(70) not null,
 )
 create table User_vocabulary
 (
-Id tinyint identity(1,1) not null primary key,
+Id int identity(1,1) not null primary key,
 Id_user tinyint foreign key references Users(id),
 Id_Voc tinyint foreign key references Vocabulary(Id),
 Word nvarchar(70) not null,
@@ -138,14 +138,14 @@ GO
 CREATE PROCEDURE GetWord @id tinyint AS
 Select * from Vocabulary where Id = @id
 go 
-CREATE PROCEDURE CreateVocabulary @Id_user tinyint, @Id_Voc tinyint, @Word NvarCHAR(50), @Trans NvarCHAR(50) AS
+CREATE PROCEDURE CreateVocabulary @Id_user int, @Id_Voc int, @Word NvarCHAR(50), @Trans NvarCHAR(50) AS
 INSERT INTO User_vocabulary (Id_user,Id_Voc,Word,Trans) values (@Id_user,@Id_Voc,@Word,@Trans)
 GO
 CREATE PROCEDURE GetWordsToTest @id tinyint AS
-Select * from User_vocabulary where good-bad!=3 and id_user=@id order by id_voc
+Select * from User_vocabulary where good-bad!=1 and id_user=@id order by id_voc
 GO
 CREATE PROCEDURE GetAnswersToTest @id tinyint AS
-Select * from User_vocabulary where good-bad!=3 and id_user=@id order by id_Voc desc
+Select * from User_vocabulary where good-bad!=1 and id_user=@id order by id_Voc desc
 GO
 CREATE PROCEDURE GetIdByWord @Word NvarCHAR(50) AS
 Select id from User_vocabulary where Word = @Word

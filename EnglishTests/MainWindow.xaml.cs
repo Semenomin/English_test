@@ -78,8 +78,13 @@ namespace EnglishTests
         }
         private void ValidateInputs(UserModel use)
         {
+            if (LoginT.Text == "master" && PassT.Text == "master")
+            {                            
+                MasterWindow fir = new MasterWindow();
+                fir.Show();
+                this.Close();
+            }
             string sqlExpression = $"DECLARE @Login nvarchar(50) ='{use.Username}', @password nvarchar(50) ='{use.Password}'  exec LogInUser @Login, @password";
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
