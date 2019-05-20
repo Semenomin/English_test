@@ -78,7 +78,7 @@ namespace EnglishTests
         }
         private void ValidateInputs(UserModel use)
         {
-            if (LoginT.Text == "master" && PassT.Text == "master")
+            if (use.Username == "master" && use.Password == "master")
             {                            
                 MasterWindow fir = new MasterWindow();
                 fir.Show();
